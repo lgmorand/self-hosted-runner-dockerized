@@ -15,7 +15,8 @@ RUN \
 WORKDIR /home/actions/actions-runner
 RUN chown -R actions ~actions && /home/actions/actions-runner/bin/installdependencies.sh
 
-USER actions
+
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
+USER actions
 ENTRYPOINT ["./entrypoint.sh"]
