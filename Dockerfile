@@ -17,4 +17,5 @@ RUN chown -R actions ~actions && /home/actions/actions-runner/bin/installdepende
 
 USER actions
 COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
