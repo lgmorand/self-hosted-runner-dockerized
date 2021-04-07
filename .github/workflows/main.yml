@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag self-hosted-runnner:latest
+      working-directory: ./src
+    - run: docker images
+    - run: docker login --username"=${{ secrets.LOGIN }}" -p="${{ secrets.PASSWORD }}"
+    - run: docker tag self-hosted-runnner:latest lgmorand/self-hosted-runnner:latest
+    - run: docker push lgmorand/self-hosted-runnner:latest
+    
