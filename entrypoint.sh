@@ -14,6 +14,6 @@ cleanup() {
   --unattended \
   --work _work
 
-./runsvc.sh
+./run.sh
 
 cleanup
